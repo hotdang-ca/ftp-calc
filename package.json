@@ -1,6 +1,6 @@
 {
   "name": "ftp-calc",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Given your average watts, calculates your Zones",
   "repository": {
     "type": "git",
