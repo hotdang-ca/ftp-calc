@@ -60,4 +60,11 @@ describe('FTPCalc', function() {
     assert.equal(zones.Zone6.avgPower.low, 121, '121% of 100w is 121');
     assert.equal(zones.Zone6.avgPower.high, 150, '150% of 100w is 150');
   });
+
+  it('calculates percentages', function() {
+    const percentages = ftpCalc.calcPercentages(100, '80,100,120');
+    assert.equal(percentages['80%'], 80, '80% of 100w is 80');
+    assert.equal(percentages['100%'], 100, '100% of 100w is 100');
+    assert.equal(percentages['120%'], 120, '120% of 100w is 120');
+  });
 });

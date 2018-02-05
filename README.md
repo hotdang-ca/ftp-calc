@@ -5,7 +5,7 @@ This node module allows you to supply your average watts during a 20-minute FTP 
 ## Usage
 `npm install --save ftp-calc`
 
-Then, in your (ES2015+) source code: 
+Then, in your (ES2015+) source code:
 
 ```
 import { calcZones } from 'ftp-calc';
@@ -23,7 +23,7 @@ Each zone has a `name` prop, a `short` prop for the abbreviation, `desc` and `be
 - `avgPower` has a `low` and `high` value.
 - `avgHr` will also have a `low` and `high` value, if you supplied `hr` to `calcZones()`.
 
-Sample: 
+Sample:
 
 ```
 {
@@ -35,7 +35,7 @@ Sample:
 		avgPower: { low: 0, high: 107 },
 		avgHr: { low: 115, high: undefined }
 	},
-	
+
 	Zone2: {
 		name: 'Zone 2: Endurance',
 		short: 'EN',
@@ -49,6 +49,31 @@ Sample:
 
 (truncated).
 
+### Percentages
+Often, you'll need to quickly calculate percentage of your average FTP for training purposes. Simply perform the following:
+
+```
+import { calcPercentages } from 'ftp-calc';
+
+const watts = 195;
+const percentString = '50,60,70,80,90,125,150';
+
+const percentages = calcPercentages(watts, percentString);
+```
+You will receive the following sample output:
+```
+{
+  '50%': 97,
+  '60%': 117,
+  '70%': 136,
+  '80%': 156,
+  '90%': 175,
+  '125%': 243,
+  '150%': 292,
+}
+```
+The key is the percentage interpreted from the percentageString; the value is the wattage that represents that percentage of average FTP.
+
 ## Methodology
 Calculations are based on values provided by [WattBike](https://support.wattbike.com/hc/en-us/articles/115001848349-Functional-Threshold-Power-FTP-Training-Zones). Briefly:
 
@@ -61,7 +86,7 @@ Zone 4 (Lactate Threshold) | 91 – 105% | 95 – 105%
 Zone 5 (VO2max) | 106 – 120% | > 106%
 Zone 6 (Anaerobic Capacity) | 121 – 150% | N/A (are you dead yet?)
 
-I'd highly recommend that you not only consult your physician before undergoing any intense training or excercise, but that you use the values in this node module **at your own risk**. 
+I'd highly recommend that you not only consult your physician before undergoing any intense training or excercise, but that you use the values in this node module **at your own risk**.
 
 If these numbers aren't what you'd expect, fork the repo and make changes to the `ZONE_CALC` object. Optionally, open a pull request :-).
 

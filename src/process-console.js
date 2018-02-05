@@ -1,13 +1,14 @@
 const printUsage = () => {
   return (`
     Prints Functional Threshold Power zones based on input average watts and optionally heart rate.
-    usage: <entry-point> [--watts=num | -w=num] [--hr=num | -h=num]
+    usage: <entry-point> [--watts=num] [--hr=num] [--percentages=num,num,...]
   `);
 }
 
 export const processOnConsole = (args) => {
   let watts;
   let hr;
+  let percentages;
 
   args.forEach((val, index, array) => {
     try {
@@ -25,6 +26,14 @@ export const processOnConsole = (args) => {
     } catch (e) {
       hr = undefined;
     }
+
+    try {
+      if (val.indexOf('--percentages=') > -1 || val.indexOf('-p=') > -1) {
+        percentages = val.split('=')[1];
+      }
+    } catch (e) {
+      percentages = undefined;
+    }
   });
 
   if (watts) {
@@ -34,8 +43,12 @@ export const processOnConsole = (args) => {
       console.log(`HR:    ${hr}`);
     }
 
+    if (percentages) {
+      console.log(`Percentages: ${percentages}`);
+    }
+
     console.log('--------');
-    return {watts, hr};
+    return {watts, hr, percentages};
   }
 
   console.log(printUsage());
