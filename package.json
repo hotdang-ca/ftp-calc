@@ -11,7 +11,7 @@
     "start": "echo \"You should specity start:dev or start:build\n\"",
     "start:dev": "babel-node src/index.js",
     "start:build": "node build/index.js",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "build": "babel src --out-dir build",
     "test": "mocha test/test.js"
   },
