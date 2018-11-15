@@ -26,14 +26,16 @@ Object.defineProperty(exports, 'calcPercentages', {
 var _processConsole = require('./process-console');
 
 // Process for console access
-if (process.argv.length > 0) {
-  var args = (0, _processConsole.processOnConsole)(process.argv);
+if (typeof process !== 'undefined') {
+  if (process.argv && process.argv.length > 0) {
+    var args = (0, _processConsole.processOnConsole)(process.argv);
 
-  if (typeof args !== 'undefined') {
-    console.log((0, _calcZones.calcZones)(args.watts, args.hr));
+    if (typeof args !== 'undefined') {
+      console.log((0, _calcZones.calcZones)(args.watts, args.hr));
 
-    if (args.percentages && args.percentages.length > 0) {
-      console.log((0, _calcPercentages.calcPercentages)(args.watts, args.percentages));
+      if (args.percentages && args.percentages.length > 0) {
+        console.log((0, _calcPercentages.calcPercentages)(args.watts, args.percentages));
+      }
     }
   }
 }
