@@ -1,4 +1,4 @@
-#Functional Threashold Power Calculator
+# Functional Threashold Power Calculator
 
 This node module allows you to supply your average watts during a 20-minute FTP test (and optionally, average heart rate), and produce results for your Threshold Zones.
 
